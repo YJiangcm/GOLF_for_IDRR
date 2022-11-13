@@ -10,3 +10,12 @@ Then run the following script to install the remaining dependencies,
 ```bash
 pip install -r requirements.txt
 ```
+
+### Data Preparation before Training
+
+1. Download the [PDTB2.0](https://github.com/cgpotts/pdtb2) dataset, put it under /raw/
+2. Run the following script for data preprocessing,
+```bash
+python3 preprocess.py
+```
+3. Download the pretrained model [roberta base](https://huggingface.co/roberta-base/tree/main), put it under /pretrained/roberta-base/
