@@ -19,3 +19,9 @@ pip install -r requirements.txt
 python3 preprocess.py
 ```
 3. Download the pretrained model [roberta base](https://huggingface.co/roberta-base/tree/main), put it under /pretrained/roberta-base/
+
+### Train, Evaluate, and Test
+Run the following script for training, evaludating, and testing,
+```bash
+sh repeats.sh
+```
