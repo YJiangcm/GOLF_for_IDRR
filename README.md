@@ -24,3 +24,16 @@ Run the following script for training, evaludating, and testing,
 ```bash
 sh repeats.sh
 ```
+
+### Ciation
+Please cite our paper by:
+```bibtex
+@misc{jiang2022promcse,
+      title={Improved Universal Sentence Embeddings with Prompt-based Contrastive Learning and Energy-based Learning}, 
+      author={Yuxin Jiang, Linhan Zhang and Wei Wang},
+      year={2022},
+      eprint={2203.06875},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
+```
