@@ -58,7 +58,7 @@ if __name__ == '__main__':
     parser.add_argument('--save_file', type=str, default='PDTB/Ji/saved_dict/', help='save model file')
     
     ## model arguments
-    parser.add_argument('--model_name_or_path', type=str, default='pretrained/roberta-base', help='the name of pretrained model')
+    parser.add_argument('--model_name_or_path', type=str, default='roberta-base', help='the name of pretrained model')
     parser.add_argument('--freeze_bert', action='store_true', default=False, help='whether freeze the parameters of bert')
     parser.add_argument('--temperature', type=float, default=0.1, help='temperature of contrastive learning')
     parser.add_argument('--num_co_attention_layer', type=int, default=2, help='number of co-attention layers')
