@@ -1,0 +1,11 @@
+Temporal.Asynchronous
+Temporal.Synchrony
+Contingency.Cause
+Contingency.Pragmatic cause
+Comparison.Contrast
+Comparison.Concession
+Expansion.Conjunction
+Expansion.Instantiation
+Expansion.Restatement
+Expansion.Alternative
+Expansion.List
