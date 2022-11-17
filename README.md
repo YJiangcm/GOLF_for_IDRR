@@ -22,7 +22,7 @@ python3 preprocess.py
 ### Train, Evaluate, and Test
 Run the following script for training, evaludating, and testing,
 ```bash
-sh repeats.sh
+python3 run.py
 ```
 
 ### Ciation
