@@ -3,3 +3,4 @@ torch-geometric==2.0.4
 pickle
 scikit-learn
 torch
+nltk
