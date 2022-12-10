@@ -1,4 +1,5 @@
 transformers==4.2.1
+pytorch-pretrained-bert==0.6.2
 torch-geometric==2.0.4
 pickle
 scikit-learn
