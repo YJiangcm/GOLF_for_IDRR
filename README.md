@@ -13,11 +13,12 @@ pip install -r requirements.txt
 
 ### Data Preparation before Training
 
-1. Download the [PDTB2.0](https://github.com/cgpotts/pdtb2) dataset, put it under /raw/
+1. Download the [PDTB 2.0](https://github.com/cgpotts/pdtb2) dataset, put it under /raw/
 2. Run the following script for data preprocessing,
 ```bash
 python3 preprocess.py
 ```
+(**P.S.** PDTB 3.0 can be downloaded from [https://catalog.ldc.upenn.edu/LDC2019T05](https://catalog.ldc.upenn.edu/LDC2019T05). You can easily modify [preprocess.py](https://github.com/YJiangcm/GOLF_for_IDRR/blob/master/preprocess.py) and adapt it to PDTB 3.0.) 
 
 ### Train, Evaluate, and Test
 Run the following script for training, evaludating, and testing,
