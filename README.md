@@ -1,5 +1,5 @@
 # GOLF
-## Global and Local Hierarchy-aware Contrastive Framework for Hierarchical Implicit Discourse Relation Recognition
+## Global and Local Hierarchy-aware Contrastive Framework for Hierarchical Implicit Discourse Relation Recognition (ACL 2023)
 
 ### Requirements
 
@@ -28,11 +28,11 @@ python3 run.py
 ### Ciation
 Please cite our paper by:
 ```bibtex
-@misc{jiang2022promcse,
-      title={Improved Universal Sentence Embeddings with Prompt-based Contrastive Learning and Energy-based Learning}, 
-      author={Yuxin Jiang, Linhan Zhang and Wei Wang},
+@misc{jiang2022global,
+      title={Global and Local Hierarchy-aware Contrastive Framework for Implicit Discourse Relation Recognition}, 
+      author={Yuxin Jiang and Linhan Zhang and Wei Wang},
       year={2022},
-      eprint={2203.06875},
+      eprint={2211.13873},
       archivePrefix={arXiv},
       primaryClass={cs.CL}
 }
