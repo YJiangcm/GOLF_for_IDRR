@@ -6,8 +6,7 @@ import logging as lgg
 from sklearn import metrics
 import time
 from utils import get_time_dif
-from pytorch_pretrained_bert.optimization import BertAdam, WarmupCosineSchedule
-from transformers import AdamW, get_linear_schedule_with_warmup
+from pytorch_pretrained_bert.optimization import BertAdam
 
 
 def train(args, model, train_loader, dev_loader, test_loader):
