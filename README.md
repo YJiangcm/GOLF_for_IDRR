@@ -3,7 +3,7 @@
 
 ### Requirements
 
-First, install PyTorch by following the instructions from [the official website](https://pytorch.org). To faithfully reproduce our results, please use the correct `1.10.1` version corresponding to your platforms/CUDA versions. PyTorch version higher than `1.10.1` should also work. 
+Firstly, install PyTorch by following the instructions from [the official website](https://pytorch.org). To faithfully reproduce our results, please use the correct `1.10.1` version corresponding to your platforms/CUDA versions. PyTorch version higher than `1.10.1` should also work. Secondly, install torch_geometric by following the instructions from [the official website](https://pytorch-geometric.readthedocs.io/en/latest/install/installation.html).
 
 Then run the following script to install the remaining dependencies,
 
