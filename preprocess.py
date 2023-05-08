@@ -1,3 +1,9 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Jan 21 2023
+@author: JIANG Yuxin
+"""
+
 from pdtb2 import CorpusReader
 import argparse
 import os
