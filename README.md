@@ -1,4 +1,4 @@
-# GOLF_for_IDRR
+# GOLF
 ## Global and Local Hierarchy-aware Contrastive Framework for Hierarchical Implicit Discourse Relation Recognition
 
 ### Requirements
