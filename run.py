@@ -70,19 +70,19 @@ if __name__ == '__main__':
     ## training arguments
     parser.add_argument('--pad_size', type=int, default=100, help='the max sequence length')
     parser.add_argument('--batch_size', type=int, default=32, help='batch size')
-    parser.add_argument('--epoch', type=int, default=8, help='training epochs')
+    parser.add_argument('--epoch', type=int, default=15, help='training epochs')
     parser.add_argument('--lr', type=float, default=1e-5, help='learning rate')
     parser.add_argument('--warmup_ratio', type=float, default=0.05, help='warmup_ratio')
-    parser.add_argument('--evaluate_steps', type=int, default=50, help='number of evaluate_steps')
+    parser.add_argument('--evaluate_steps', type=int, default=100, help='number of evaluate_steps')
     parser.add_argument('--require_improvement', type=int, default=10000, help='early stop steps')
     
     args = parser.parse_args()
 
     
-    args.i2top = [x.strip() for x in open(args.data_file + 'class4.txt').readlines()]
+    args.i2top = [x.strip() for x in open(args.data_file + 'top.txt').readlines()]
     args.top2i = dict((x, xid) for xid, x in enumerate(args.i2top))
     args.n_top = len(args.i2top)
-    args.i2sec = [x.strip() for x in open(args.data_file + 'class11.txt').readlines()]
+    args.i2sec = [x.strip() for x in open(args.data_file + 'sec.txt').readlines()]
     args.sec2i = dict((x, xid) for xid, x in enumerate(args.i2sec))
     args.n_sec = len(args.i2sec)
     args.i2conn = [x.strip() for x in open(args.data_file + 'conn.txt').readlines()]
@@ -90,7 +90,7 @@ if __name__ == '__main__':
     args.n_conn = len(args.i2conn)
     args.label_num = args.n_top + args.n_sec + args.n_conn # total label num(top:4,second:11,conn:102)
     
-    args.tokenizer = AutoTokenizer.from_pretrained(args.model_name_or_path)
+    args.tokenizer = AutoTokenizer.from_pretrained(args.model_name_or_path, use_fast=False)
     args.config = AutoConfig.from_pretrained(args.model_name_or_path)
     
     args.t = datetime.now().strftime('%B%d-%H:%M:%S')
@@ -135,8 +135,3 @@ if __name__ == '__main__':
     # train
     model = Model(args).to(args.device)
     train(args, model, train_loader, dev_loader, test_loader)
-    
-    
-    
-    
-    
