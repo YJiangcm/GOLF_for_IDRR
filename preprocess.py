@@ -12,14 +12,6 @@ selected_second_senses = set([
     'Expansion.Alternative', 'Expansion.List'
 ])
 
-# for instances without the second-level senses
-# In training phase: we directly set as the most likely sub-sense of their top-level sense, respectively
-# In testing phase: these instances will be discarded for calclurate the acc and F_1 score at the second-level
-top_2_second = {'Temporal': 'Temporal.Asynchronous',
-                'Comparison': 'Comparison.Contrast',
-                'Contingency': 'Contingency.Cause',
-                'Expansion': 'Expansion.Conjunction'}
-
 
 def arg_filter(input):
     arg = []
@@ -64,23 +56,6 @@ def preprocess(splitting):
     sense1_test = []
     sense2_test = []
 
-    # other instances
-    arg1_train_other = []
-    arg2_train_other = []
-    sense1_train_other = []  # top, second, connective
-    sense2_train_other = []  # None, None, None
-
-    arg1_dev_other = []
-    arg2_dev_other = []
-    sense1_dev_other = []
-    sense2_dev_other = []
-
-    arg1_test_other = []
-    arg2_test_other = []
-    sense1_test_other = []
-    sense2_test_other = []
-
-    tmp_i = 0
     os.chdir(sys.path[0])
     for corpus in CorpusReader('./raw/pdtb2.csv').iter_data():
         if corpus.Relation != 'Implicit':
@@ -120,87 +95,11 @@ def preprocess(splitting):
                         sense2_dev.append([sense_split[0], sense_l2, corpus.Conn2])
                     elif corpus.Section in test_sec:
                         sense2_test.append([sense_split[0], sense_l2, corpus.Conn2])
-                else:
-                    sense_l2 = sense_l2 if sense_l2 in selected_second_senses else top_2_second[sense_split[0]]
-                    if corpus.Section in train_sec:
-                        arg1_train_other.append(arg1)
-                        arg2_train_other.append(arg2)
-                        sense1_train_other.append([sense_split[0], sense_l2, corpus.Conn1])
-                        sense2_train_other.append([None, None, None])
-                    elif corpus.Section in dev_sec:
-                        arg1_dev_other.append(arg1)
-                        arg2_dev_other.append(arg2)
-                        sense1_dev_other.append([sense_split[0], sense_l2, corpus.Conn1])
-                    elif corpus.Section in test_sec:
-                        arg1_test_other.append(arg1)
-                        arg2_test_other.append(arg2)
-                        sense1_test_other.append([sense_split[0], sense_l2, corpus.Conn1])
-                    else:
-                        continue
             else:
                 if corpus.Section in dev_sec:
                     sense2_dev.append([None, None, None])
                 elif corpus.Section in test_sec:
                     sense2_test.append([None, None, None])
-        else:
-            # instances need special processing
-            tmp_i += 1
-            print(sense_l2)
-
-            arg1, pos1 = arg_filter(corpus.arg1_pos(wn_format=True))
-            arg2, pos2 = arg_filter(corpus.arg2_pos(wn_format=True))
-            sense_l2 = top_2_second[sense_split[0]]
-            if corpus.Section in train_sec:
-                arg1_train_other.append(arg1)
-                arg2_train_other.append(arg2)
-                sense1_train_other.append([sense_split[0], sense_l2, corpus.Conn1])
-                sense2_train_other.append([None, None, None])
-            elif corpus.Section in dev_sec:
-                arg1_dev_other.append(arg1)
-                arg2_dev_other.append(arg2)
-                sense1_dev_other.append([sense_split[0], sense_l2, corpus.Conn1])
-            elif corpus.Section in test_sec:
-                arg1_test_other.append(arg1)
-                arg2_test_other.append(arg2)
-                sense1_test_other.append([sense_split[0], sense_l2, corpus.Conn1])
-            else:
-                continue
-
-            if corpus.Conn2 is not None:
-                sense_split = corpus.Conn2SemClass1.split('.')
-                sense_l2 = '.'.join(sense_split[0:2])
-                sense_l2 = sense_l2 if sense_l2 in selected_second_senses else top_2_second[sense_split[0]]
-                if corpus.Section in train_sec:
-                    arg1_train_other.append(arg1)
-                    arg2_train_other.append(arg2)
-                    sense1_train_other.append([sense_split[0], sense_l2, corpus.Conn2])
-                    sense2_train_other.append([None, None, None])
-                elif corpus.Section in dev_sec:
-                    sense2_dev_other.append([sense_split[0], sense_l2, corpus.Conn2])
-                elif corpus.Section in test_sec:
-                    sense2_test_other.append([sense_split[0], sense_l2, corpus.Conn2])
-            else:
-                if corpus.Section in dev_sec:
-                    sense2_dev_other.append([None, None, None])
-                elif corpus.Section in test_sec:
-                    sense2_test_other.append([None, None, None])
-
-    print(tmp_i)
-    # combined two parts of data
-    arg1_train.extend(arg1_train_other)
-    arg2_train.extend(arg2_train_other)
-    sense1_train.extend(sense1_train_other)
-    sense2_train.extend(sense2_train_other)
-
-    arg1_dev.extend(arg1_dev_other)
-    arg2_dev.extend(arg2_dev_other)
-    sense1_dev.extend(sense1_dev_other)
-    sense2_dev.extend(sense2_dev_other)
-
-    arg1_test.extend(arg1_test_other)
-    arg2_test.extend(arg2_test_other)
-    sense1_test.extend(sense1_test_other)
-    sense2_test.extend(sense2_test_other)
 
     assert len(arg1_train) == len(arg2_train) == len(sense1_train) == len(sense2_train)
     assert len(arg1_dev) == len(arg2_dev) == len(sense1_dev) == len(sense2_dev)
