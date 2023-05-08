@@ -7,6 +7,7 @@ from sklearn import metrics
 import time
 from utils import get_time_dif
 from pytorch_pretrained_bert.optimization import BertAdam, WarmupCosineSchedule
+from transformers import AdamW, get_linear_schedule_with_warmup
 
 
 def train(args, model, train_loader, dev_loader, test_loader):
@@ -15,10 +16,10 @@ def train(args, model, train_loader, dev_loader, test_loader):
     optimizer_grouped_parameters = [
         {'params': [p for n, p in param_optimizer if not any(nd in n for nd in no_decay)], 'weight_decay': 0.01},
         {'params': [p for n, p in param_optimizer if any(nd in n for nd in no_decay)], 'weight_decay': 0.0}]
-    scheduler = WarmupCosineSchedule(warmup=args.warmup_ratio, t_total=len(train_loader) * args.epoch)
     optimizer = BertAdam(optimizer_grouped_parameters,
-                          lr=args.lr,
-                          schedule=scheduler)
+                        lr=args.lr,
+                        warmup=args.warmup_ratio,
+                        t_total=len(train_loader) * args.epoch)
 
     total_batch = 0
     dev_best_acc_top = 0.0
@@ -30,16 +31,15 @@ def train(args, model, train_loader, dev_loader, test_loader):
 
     last_improve = 0
     flag = False
-    model.train()
     for epoch in range(args.epoch):
-        model.train()
         start_time = time.time()
         lgg.info('Epoch [{}/{}]'.format(epoch + 1, args.epoch))
         for i, (x, _, mask, _, y1_top, y1_sec, y1_conn, _, _, _, arg1_mask, arg2_mask) in enumerate(train_loader):
-            model.zero_grad()
+            model.train()
             logits_top, logits_sec, logits_conn, loss = model(x, mask, y1_top, y1_sec, y1_conn, arg1_mask, arg2_mask, train=True)
             loss.backward()
             optimizer.step()
+            optimizer.zero_grad()
             
             total_batch += 1
             if total_batch % args.evaluate_steps == 0:
@@ -61,7 +61,7 @@ def train(args, model, train_loader, dev_loader, test_loader):
                 loss_dev, acc_top, f1_top, acc_sec, f1_sec, acc_conn, f1_conn = evaluate(args, model, dev_loader)
                 
                 if (acc_top + acc_sec + acc_conn + f1_top + f1_sec + f1_conn) \
-                    > (dev_best_acc_top+dev_best_acc_sec+dev_best_acc_conn+dev_best_f1_top+ dev_best_f1_sec+ dev_best_f1_conn):
+                    > (dev_best_acc_top+dev_best_acc_sec+dev_best_acc_conn+dev_best_f1_top+dev_best_f1_sec+dev_best_f1_conn):
                     dev_best_f1_top = f1_top
                     dev_best_f1_sec = f1_sec
                     dev_best_f1_conn = f1_conn
@@ -87,8 +87,6 @@ def train(args, model, train_loader, dev_loader, test_loader):
 
                 lgg.info(' ')
                 lgg.info(' ')
-
-                model.train()
 
                 if total_batch - last_improve > args.require_improvement:
                     # training stop
@@ -155,8 +153,7 @@ def evaluate(args, model, data_loader, test=False):
         for i, (x, _, mask, _, y1_top, y1_sec, y1_conn, y2_top, y2_sec, y2_conn, arg1_mask, arg2_mask) in enumerate(data_loader):
 
             logits_top, logits_sec, logits_conn = model(x, mask, y1_top, y1_sec, y1_conn, arg1_mask, arg2_mask, train=False)
-
-            model.zero_grad()
+            
             loss_top = F.cross_entropy(logits_top, y1_top)
             loss_sec = F.cross_entropy(logits_sec, y1_sec)
             loss_conn = F.cross_entropy(logits_conn, y1_conn)
@@ -201,11 +198,17 @@ def evaluate(args, model, data_loader, test=False):
     mask = (predict_sense_conn == labels2_all_conn)
     gold_sense_conn[mask] = labels2_all_conn[mask]
 
-    # cutoff
+    # PDTB2.0 cutoff
     if test:
         cut_off = 1039
     else:
         cut_off = 1165
+    
+    # PDTB3.0 cutoff    
+    # if test:
+    #     cut_off = 1474
+    # else:
+    #     cut_off = 1653
 
     acc_top = metrics.accuracy_score(gold_sense_top, predict_sense_top)
     f1_top = metrics.f1_score(gold_sense_top, predict_sense_top, average='macro')
@@ -250,19 +253,3 @@ def evaluate(args, model, data_loader, test=False):
                 consistency_top_sec, consistency_sec_conn, consistency_top_sec_conn
                 
     return loss_total / len(data_loader), acc_top, f1_top, acc_sec, f1_sec, acc_conn, f1_conn
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
