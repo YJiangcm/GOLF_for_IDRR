@@ -7,6 +7,8 @@ torch-cluster
 torch-spline-conv
 torch-geometric
 nltk
+scikit-learn
+pickle
 
 
 # pip3 install --no-index torch-scatter -f https://pytorch-geometric.com/whl/torch-1.10.0+cu113.html
