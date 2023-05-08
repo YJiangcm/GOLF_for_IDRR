@@ -92,10 +92,6 @@ class Model(nn.Module):
         self.fc_top = nn.Linear(args.config.hidden_size, args.n_top)
         self.fc_sec = nn.Linear(args.config.hidden_size + args.n_top, args.n_sec)
         self.fc_conn = nn.Linear(args.config.hidden_size + args.n_sec, args.n_conn)
-
-    
-    # def jaccard(self, A, B):
-    #     return len(set(A).intersection(set(B))) / len(set(A).union(set(B)))
     
     def dice(self, A, B):
         return (2 * len(set(A).intersection(set(B)))) / (len(set(A)) + len(set(B)))
