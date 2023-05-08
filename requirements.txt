@@ -1,11 +1,11 @@
 transformers
 pytorch-pretrained-bert
-torch
-torch-geometric
 nltk
 scikit-learn
 pickle
 tqdm
+torch
+torch-geometric
 
 # torch-scatter
 # torch-sparse
