@@ -4,15 +4,3 @@ nltk
 scikit-learn
 pickle
 tqdm
-torch
-torch-geometric
-
-# torch-scatter
-# torch-sparse
-# torch-cluster
-# torch-spline-conv
-# pip3 install --no-index torch-scatter -f https://pytorch-geometric.com/whl/torch-1.10.0+cu113.html
-# pip3 install torch-sparse==0.6.12 -f https://pytorch-geometric.com/whl/torch-1.10.0+cu113.html
-# pip3 install torch-cluster==1.6.0 -f https://pytorch-geometric.com/whl/torch-1.10.0+cu113.html
-# pip3 install torch-spline-conv==1.2.1 -f https://pytorch-geometric.com/whl/torch-1.10.0+cu113.html
-# pip install torch-geometric
