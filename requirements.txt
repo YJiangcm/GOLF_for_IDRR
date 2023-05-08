@@ -1,16 +1,15 @@
 transformers
 pytorch-pretrained-bert
 torch
-torch-scatter
-torch-sparse
-torch-cluster
-torch-spline-conv
 torch-geometric
 nltk
 scikit-learn
 pickle
 
-
+# torch-scatter
+# torch-sparse
+# torch-cluster
+# torch-spline-conv
 # pip3 install --no-index torch-scatter -f https://pytorch-geometric.com/whl/torch-1.10.0+cu113.html
 # pip3 install torch-sparse==0.6.12 -f https://pytorch-geometric.com/whl/torch-1.10.0+cu113.html
 # pip3 install torch-cluster==1.6.0 -f https://pytorch-geometric.com/whl/torch-1.10.0+cu113.html
