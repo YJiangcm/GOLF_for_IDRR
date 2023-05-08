@@ -5,6 +5,7 @@ torch-geometric
 nltk
 scikit-learn
 pickle
+tqdm
 
 # torch-scatter
 # torch-sparse
