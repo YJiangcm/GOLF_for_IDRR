@@ -1,0 +1,14 @@
+Temporal.Asynchronous
+Temporal.Synchronous
+Contingency.Cause
+Contingency.Cause+Belief
+Contingency.Condition
+Contingency.Purpose
+Comparison.Contrast
+Comparison.Concession
+Expansion.Conjunction
+Expansion.Equivalence
+Expansion.Instantiation
+Expansion.Level-of-detail
+Expansion.Manner
+Expansion.Substitution
