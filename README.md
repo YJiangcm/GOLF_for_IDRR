@@ -31,12 +31,21 @@ python3 run.py
 ### Ciation
 Please cite our paper by:
 ```bibtex
-@misc{jiang2022global,
-      title={Global and Local Hierarchy-aware Contrastive Framework for Implicit Discourse Relation Recognition}, 
-      author={Yuxin Jiang and Linhan Zhang and Wei Wang},
-      year={2022},
-      eprint={2211.13873},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL}
+@article{DBLP:journals/corr/abs-2211-13873,
+  author       = {Yuxin Jiang and
+                  Linhan Zhang and
+                  Wei Wang},
+  title        = {Global and Local Hierarchy-aware Contrastive Framework for Implicit
+                  Discourse Relation Recognition},
+  journal      = {CoRR},
+  volume       = {abs/2211.13873},
+  year         = {2022},
+  url          = {https://doi.org/10.48550/arXiv.2211.13873},
+  doi          = {10.48550/arXiv.2211.13873},
+  eprinttype    = {arXiv},
+  eprint       = {2211.13873},
+  timestamp    = {Tue, 29 Nov 2022 17:41:18 +0100},
+  biburl       = {https://dblp.org/rec/journals/corr/abs-2211-13873.bib},
+  bibsource    = {dblp computer science bibliography, https://dblp.org}
 }
 ```
