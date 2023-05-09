@@ -1,6 +1,8 @@
 # GOLF
 ## Global and Local Hierarchy-aware Contrastive Framework for Hierarchical Implicit Discourse Relation Recognition (ACL 2023)
 
+arxiv preprint: https://arxiv.org/abs/2304.14827
+
 ### Requirements
 
 1. Install `PyTorch` by following the instructions from [the official website](https://pytorch.org). 
