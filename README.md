@@ -29,6 +29,7 @@ Run the following script for training, evaludating, and testing,
 ```bash
 python3 run.py
 ```
+（Our code can be easily run on a single NVIDIA GeForce RTX 3090)
 
 ### Ciation
 Please cite our paper by:
