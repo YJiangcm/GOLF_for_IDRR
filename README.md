@@ -1,4 +1,3 @@
-# GOLF
 ## Global and Local Hierarchy-aware Contrastive Framework for Hierarchical Implicit Discourse Relation Recognition (ACL 2023)
 
 arXiv preprint: https://arxiv.org/abs/2211.13873
