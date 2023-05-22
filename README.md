@@ -30,7 +30,7 @@ python3 run.py
 ```
 （Our code can be easily run on a single NVIDIA GeForce RTX 3090)
 
-### Ciation
+### Citation
 If you find this work helpful, please cite our paper by:
 ```bibtex
 @article{DBLP:journals/corr/abs-2211-13873,
