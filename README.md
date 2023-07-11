@@ -33,21 +33,18 @@ python3 run.py
 ### Citation
 If you find this work helpful, please cite our paper by:
 ```bibtex
-@article{DBLP:journals/corr/abs-2211-13873,
-  author       = {Yuxin Jiang and
-                  Linhan Zhang and
-                  Wei Wang},
-  title        = {Global and Local Hierarchy-aware Contrastive Framework for Implicit
-                  Discourse Relation Recognition},
-  journal      = {CoRR},
-  volume       = {abs/2211.13873},
-  year         = {2022},
-  url          = {https://doi.org/10.48550/arXiv.2211.13873},
-  doi          = {10.48550/arXiv.2211.13873},
-  eprinttype    = {arXiv},
-  eprint       = {2211.13873},
-  timestamp    = {Tue, 29 Nov 2022 17:41:18 +0100},
-  biburl       = {https://dblp.org/rec/journals/corr/abs-2211-13873.bib},
-  bibsource    = {dblp computer science bibliography, https://dblp.org}
+@inproceedings{jiang-etal-2023-global,
+    title = "Global and Local Hierarchy-aware Contrastive Framework for Implicit Discourse Relation Recognition",
+    author = "Jiang, Yuxin  and
+      Zhang, Linhan  and
+      Wang, Wei",
+    booktitle = "Findings of the Association for Computational Linguistics: ACL 2023",
+    month = jul,
+    year = "2023",
+    address = "Toronto, Canada",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2023.findings-acl.510",
+    pages = "8048--8064",
+    abstract = "Due to the absence of explicit connectives, implicit discourse relation recognition (IDRR) remains a challenging task in discourse analysis. The critical step for IDRR is to learn high-quality discourse relation representations between two arguments. Recent methods tend to integrate the whole hierarchical information of senses into discourse relation representations for multi-level sense recognition. Nevertheless, they insufficiently incorporate the static hierarchical structure containing all senses (defined as global hierarchy), and ignore the hierarchical sense label sequence corresponding to each instance (defined as local hierarchy). For the purpose of sufficiently exploiting global and local hierarchies of senses to learn better discourse relation representations, we propose a novel GlObal and Local Hierarchy-aware Contrastive Framework (GOLF), to model two kinds of hierarchies with the aid of multi-task learning and contrastive learning. Experimental results on PDTB 2.0 and PDTB 3.0 datasets demonstrate that our method remarkably outperforms current state-of-the-art models at all hierarchical levels.",
 }
 ```
